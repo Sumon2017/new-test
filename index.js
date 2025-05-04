@@ -9,8 +9,14 @@ app.route("/").get(async (req, res)=>{
 app.route("/doit").post(async (req, res)=>{
     console.log(req.body.imagebase64)
     res.json({
-        data:"hi"
-    })
+        success: true,   
+            data: {
+                test:"true"
+            },   
+            message: "Successfully extracted JSON from image" 
+          }
+          
+    )
 })
 app.listen(3000,()=>{
     console.log("app running...")
