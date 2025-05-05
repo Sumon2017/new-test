@@ -39,7 +39,7 @@ async function transformImage(base64String) {
 
 function processString(input){
     let arr
-    let newStr
+    let newStr=input
     if(input[0] == '{'){
         arr = input.split(""); // Convert to array
         arr[0] = ' '; // Change 'e' to 'X'
@@ -69,6 +69,8 @@ app.route("/doit").post(async (req, res)=>{
         const whitenedimage = await transformImage(mystring)
         //fs.writeFileSync("./temp2.png", Buffer.from(whitenedimage, 'base64'))
         const text = await ocrSpace("data:image/png;base64,"+whitenedimage, { apiKey: process.env.OCR , language: 'eng', scale:true, OCREngine:2})
+
+        //console.log(text)
 
         console.log(processString(text.ParsedResults[0].ParsedText))
 
